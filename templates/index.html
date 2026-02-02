@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Synopsiszer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 2px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e8;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            border: 1px solid #cbd5e0;
+            font-size: 15px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        button {
+            width: auto;
+            min-width: 120px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0069d9;
+        }
+
+        .error {
+            background-color: #fff5f5;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            border: 1px solid #feb2b2;
+            font-size: 14px;
+        }
+
+        .summary-container {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .summary-container h3 {
+            font-size: 22px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .summary-text {
+            line-height: 1.7;
+            color: #4a5568;
+            font-size: 16px;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>YouTube Synoposiszer</h2>
+
+    <form method="POST">
+        <label for="video_url">YouTube Video URL</label>
+        <input
+            type="text"
+            id="video_url"
+            name="video_url"
+            placeholder="https://www.youtube.com/watch?v=XXXXXXXXXXX"
+            required
+        >
+
+        <label for="language">Select language</label>
+        <select id="language" name="language">
+            {% for code, lang in languages.items() %}
+                <option value="{{ code }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Summarize</button>
+    </form>
+
+    {% if error %}
+        <div class="error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% endif %}
+
+    {% if summary %}
+        <div class="summary-container">
+            <h3>Transcript Summary</h3>
+            <div class="summary-text">{{ summary }}</div>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
