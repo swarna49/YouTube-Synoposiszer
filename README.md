@@ -44,5 +44,8 @@ A powerful web application that generates long, detailed synopses of YouTube vid
    ```
    Open `http://127.0.0.1:5000` in your browser.
 
+5.🎬 Demo Video
+   https://github.com/swarna49/YouTube-Synoposiszer/issues/1#issue-3885762671
+
 ## Important Note
 The first time you run a summary, the app will download the BART model (approx. 1.6GB) and the Whisper model. This may take a few minutes depending on your connection.
